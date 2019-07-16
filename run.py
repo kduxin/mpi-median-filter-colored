@@ -3,10 +3,12 @@ import ctypes
 from PIL import Image
 import numpy as np
 import cv2
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-lib_cpu = ctypes.cdll.LoadLibrary("lib_cpu.so")
-lib_mpi = ctypes.cdll.LoadLibrary("lib_mpi.so")
+# lib_cpu = ctypes.cdll.LoadLibrary("./lib_cpu.so")
+lib_mpi = ctypes.cdll.LoadLibrary("./lib_mpi.so")
 
 img = np.array(Image.open("./image/aimer.jpg"), dtype=np.uint8)
 # img = img.transpose([2,0,1])
@@ -54,27 +56,32 @@ img_sn = SaltNoise(img, prob=0.01)
 # img_bilblur = cv2.bilateralFilter(img_sn, 5, 75, 75)
 # img_nlmblur = cv2.fastNlMeansDenoisingColored(img_sn, h=9, hColor=10)
 
+
+
+print("Start medblurring with mpi.")
 # img_medblur_cpu = MedianBlurCpu(img, 5)
-# img_medblur_mpi = MedianBlurMPI(img, 5)
+img_medblur_mpi = MedianBlurMPI(img_sn, 5)
 # img_medblur_cuda = MedianBlurCuda(img, 5)
 
-fig = plt.figure(figsize=(15,10))
-ax11 = fig.add_subplot('221')
-ax12 = fig.add_subplot('222')
-ax21 = fig.add_subplot('223')
-ax22 = fig.add_subplot('224')
-ax11.imshow(img, aspect='auto')
-ax12.imshow(img_sn, aspect='auto')
-ax21.imshow(img_medblur_cpu, aspect='auto')
-ax22.imshow(img_medblur_mpi, aspect='auto')
-ax11.set_title('Raw Image')
-ax12.set_title('Salt Noise with prob. 0.1')
-ax21.set_title('Denoised Image with Median Blurring (single cpu)')
-ax22.set_title('Denoised Image with Median Blurring (mpi)')
-for ax in [ax11, ax12, ax21, ax22]:
-    ax.axis("off")
-fig.subplots_adjust(hspace=0.2, wspace=0.2)
-fig.save_fig("./result.jpg")
+
+# """ draw figure """
+# fig = plt.figure(figsize=(15,10))
+# ax11 = fig.add_subplot('221')
+# ax12 = fig.add_subplot('222')
+# ax21 = fig.add_subplot('223')
+# ax22 = fig.add_subplot('224')
+# ax11.imshow(img, aspect='auto')
+# ax12.imshow(img_sn, aspect='auto')
+# ax21.imshow(img_medblur_cpu, aspect='auto')
+# ax22.imshow(img_medblur_mpi, aspect='auto')
+# ax11.set_title('Raw Image')
+# ax12.set_title('Salt Noise with prob. 0.1')
+# ax21.set_title('Denoised Image with Median Blurring (single cpu)')
+# ax22.set_title('Denoised Image with Median Blurring (mpi)')
+# for ax in [ax11, ax12, ax21, ax22]:
+#     ax.axis("off")
+# fig.subplots_adjust(hspace=0.2, wspace=0.2)
+# fig.save_fig("./result.jpg")
 
 
 
@@ -94,4 +101,5 @@ fig.save_fig("./result.jpg")
 # plt.imshow(img_f.reshape([400,-1]))
 # plt.show()
 # plt.imshow(img)
+
 
