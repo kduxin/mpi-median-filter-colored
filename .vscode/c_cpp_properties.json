@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${default}",
+                "${workspaceFolder}/libjpeg-build/include"
+            ]
+        }
+    ],
+    "version": 4
+}
