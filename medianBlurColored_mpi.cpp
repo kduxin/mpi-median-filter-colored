@@ -1,3 +1,5 @@
+// compile with "mpic++ -fopenmp -O3 medianBlurColored_mpi.cpp cv_imgproc.cpp -o mpi.o -lopencv_core -lopencv_highgui -lopencv_imgproc"
+
 
 #include <cstdio>
 #include <cstring>
