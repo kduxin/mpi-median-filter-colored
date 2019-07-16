@@ -1,3 +1,5 @@
+// compile with "mpic++ -fopenmp -O3 medianBlurColored_mpi.cpp cv_imgproc.cpp -o mpi.o -lopencv_core -lopencv_highgui -lopencv_imgproc"
+// run with "mpiexec -n 20 mpi.o ./image/aimer.jpg ./image/aimer.medfilt.5.jpg 5"
 
 #include <cstdio>
 #include <cstring>
