@@ -1,6 +1,8 @@
 // compile with "mpic++ -fopenmp -O3 medianBlurColored_mpi.cpp cv_imgproc.cpp -o mpi.o -lopencv_core -lopencv_highgui -lopencv_imgproc"
 // run with "mpiexec -n 20 mpi.o ./image/aimer.jpg ./image/aimer.medfilt.5.jpg 5"
 
+#include <iostream>
+#include <bits/stdc++.h>
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
@@ -12,6 +14,7 @@
 #include <omp.h>
 
 #include "libjpeg_imgproc.cpp"
+#include "timer.cpp"
 
 #define TAG 0
 #define min(a,b) (a<b?a:b)
@@ -99,7 +102,7 @@ int medianBlurColoredJob(uint8* image, const Job* job) {
     uint8* cache;
     uint8* image_o = new uint8[height*width*channel];
     // printf("Ready for median blurring.\n");
-    printf("height=%d, width=%d, channel=%d\n", height, width, channel);
+    // printf("height=%d, width=%d, channel=%d\n", height, width, channel);
     // printf("padh=%d, padw=%d\n", padh, padw);
     int h,w,c,p,q;
 
@@ -178,10 +181,10 @@ void jobSchedule1dim(int height, int width, int channel, int margin, int size, J
         }
     }
 
-    for (int i=1; i<size; i++) {
-        printf("Job schedule: h=%d,w=%d,c=%d,ystart=%d,xstart=%d,cstart=%d,padh=%d,padw=%d\n",
-            jobs[i].h, jobs[i].w, jobs[i].c, jobs[i].ystart, jobs[i].xstart, jobs[i].cstart, jobs[i].padh, jobs[i].padw);
-    }
+    // for (int i=1; i<size; i++) {
+    //     printf("Job schedule: h=%d,w=%d,c=%d,ystart=%d,xstart=%d,cstart=%d,padh=%d,padw=%d\n",
+    //         jobs[i].h, jobs[i].w, jobs[i].c, jobs[i].ystart, jobs[i].xstart, jobs[i].cstart, jobs[i].padh, jobs[i].padw);
+    // }
 
 }
 
@@ -203,9 +206,9 @@ void jobSchedule2dim(int height, int width, int channel, int margin, int size, J
             jobs[procid].padw = margin;
             jobs[procid].c = channel;
             if (jobs[procid].ystart >= height) jobs[procid].h = 0;
-            else jobs[procid].h = min(height, jobs[procid].ystart+colsperjob) - jobs[procid].ystart;
+            else jobs[procid].h = min(height, jobs[procid].ystart+rowsperjob) - jobs[procid].ystart;
             if (jobs[procid].xstart >= width) jobs[procid].w = 0;
-            else jobs[procid].w = min(width, jobs[procid].xstart+rowsperjob) - jobs[procid].xstart;
+            else jobs[procid].w = min(width, jobs[procid].xstart+colsperjob) - jobs[procid].xstart;
         }
     }
     for (int i=1+nblockh*nblockw; i<size; i++) {
@@ -217,10 +220,10 @@ void jobSchedule2dim(int height, int width, int channel, int margin, int size, J
             jobs[i].h = 0;
             jobs[i].w = 0;
     }
-    for (int i=1; i<size; i++) {
-        printf("Job schedule: h=%d,w=%d,c=%d,ystart=%d,xstart=%d,cstart=%d,padh=%d,padw=%d\n",
-            jobs[i].h, jobs[i].w, jobs[i].c, jobs[i].ystart, jobs[i].xstart, jobs[i].cstart, jobs[i].padh, jobs[i].padw);
-    }
+    // for (int i=1; i<size; i++) {
+    //     printf("Job schedule: h=%d,w=%d,c=%d,ystart=%d,xstart=%d,cstart=%d,padh=%d,padw=%d\n",
+    //         jobs[i].h, jobs[i].w, jobs[i].c, jobs[i].ystart, jobs[i].xstart, jobs[i].cstart, jobs[i].padh, jobs[i].padw);
+    // }
 }
 
 void createBuff(uint8* image, int height, int width, int channel, Job* job, uint8* buff) {
@@ -312,7 +315,7 @@ void registerBuff(uint8* image, int height, int width, int channel, Job* job, ui
 
 int main(int argc, char* args[]) {
 
-    printf("Entered main program.\n");
+    // printf("Entered main program.\n");
 
     std::string fullname, name, suffix, nfullname;
     int window_size = atoi(args[3]);
@@ -321,63 +324,48 @@ int main(int argc, char* args[]) {
     int shape[3];
     uint8* image;
 
-    clock_t t0, t1, t2, t3;
+    // clock_t t0, t1, t2, t3;
+    timespec t0, t1, t2, t3;
     int rank, size;
     int margin = (window_size-1) / 2;
     MPI_Status stat;
     uint8* buff;
     Job* jobs;
 
-    printf("MPI hasn't been initialized.\n");
+    // printf("MPI hasn't been initialized.\n");
     
     MPI_Init(NULL, NULL);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
 
-    printf("MPI initialized.\n");
     // Load image.
     if (rank == 0) {
         if (window_size % 2 == 0) {
             printf("Please give odd window_size like 3,5,7...\n");
             return 0;
         }
-        
-        // FILE* fp = fopen("/lustre/gt24/t24040/code/2019s1s2report/args.txt", "wt");
-        // std::string argstr = std::string(args[0]) + std::string("\t") + \
-        //     std::string(args[1]) + std::string("\t") + \
-        //     std::string(args[2]) + std::string("\t") + \
-        //     std::string(args[3]) + std::string("\n");
-        // fwrite(argstr.c_str(), sizeof(char), argstr.length(), fp);
-        // fclose(fp);
 
         fullname = std::string(args[1]);
         printf("File name: %s\n", fullname.c_str());
         int namelen = fullname.find_last_of('.');
         name = fullname.substr(0, namelen);
         suffix = fullname.substr(namelen+1, name.length()-namelen-1);
-        // nfullname = name + "_medfilt." + suffix;
         nfullname = std::string(args[2]);
-        printf("name=%s, suffix=%s, nfullname=%s\n", name.c_str(), suffix.c_str(), nfullname.c_str());
-        // getImgSize(fullname, height, width, channel);
-        // image = new uint8[height*width*channel];
+        // printf("name=%s, suffix=%s, nfullname=%s\n", name.c_str(), suffix.c_str(), nfullname.c_str());
         read_JPEG_file(image, height, width, channel, (char*)fullname.c_str());
-        // write_JPEG_file(image, height, width, channel, "./intermediate_output.jpg");
         shape[0] = height; shape[1] = width; shape[2] = channel;
-        printf("Input image size: [height, width, channel] = [%d, %d, %d]\n", height, width, channel);
+        // printf("Input image size: [height, width, channel] = [%d, %d, %d]\n", height, width, channel);
     }
 
     MPI_Bcast(shape, 3, MPI_INT, 0, MPI_COMM_WORLD);
 
     height = shape[0]; width = shape[1]; channel = shape[2];
-    // int buffsize2 = (shape[0]+2*margin)*(shape[1]+2*margin)*shape[2];
-    // printf("buffsize1=%d\n", buffsize1);
-    buff = new uint8[(height+2*margin)*(width+2*margin)*channel];
-    // printf("Rank %d buffsize: %d, %d\n", rank, buffsize1, buffsize2);
 
     // Send job dim: master -> slave
     if (rank == 0) {
-        t0 = clock();
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &t0);
+        buff = new uint8[(height+2*margin)*(width+2*margin)*channel];
         // in master process, jobs contains `size` jobs.
         jobs = new Job[size]; // jobs[0] for master process will not be visited
         jobSchedule1dim(height, width, channel, margin, size, jobs);
@@ -390,53 +378,39 @@ int main(int argc, char* args[]) {
         // in slave process, jobs contains a single job.
         jobs = new Job;
         MPI_Recv(jobs, sizeof(Job), MPI_BYTE, 0, TAG, MPI_COMM_WORLD, &stat);
-        printf("Process %02d received job schedule: h=%d, w=%d, c=%d, padh=%d, padw=%d\n",
-            rank, jobs->h, jobs->w, jobs->c, jobs->padh, jobs->padw);
+        buff = new uint8[(jobs->w+2*jobs->padw)*(jobs->h+2*jobs->padh)*jobs->c];
+        // printf("Process %02d received job schedule: h=%d, w=%d, c=%d, padh=%d, padw=%d\n",
+        //     rank, jobs->h, jobs->w, jobs->c, jobs->padh, jobs->padw);
     }
 
 
     // Send job buff (image block): master -> slave
     if (rank == 0) {
-        t1 = clock();
-        // buff = (uint8*)calloc((height+2*margin)*(width+2*margin)*channel, sizeof(uint8)); // allocate a much larger buff
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &t1);
         int buffsize;
-        // printf("Before Creating buffer for slave\n");
         printf("image [0]: %c\n", image[0]);
-        // saveImg("./binimage/original.bin", height, width, channel, image);
         for (int i=1; i<size; i++) {
-            printf("jobs[%d].h=%d, jobs[%d].w=%d\n", i, jobs[i].h, i, jobs[i].w);
+            // printf("jobs[%d].h=%d, jobs[%d].w=%d\n", i, jobs[i].h, i, jobs[i].w);
             if (jobs[i].h == 0 or jobs[i].w == 0) {
                 printf("Skipped sending buff to %d\n", i);
                 continue;
             }
             createBuff(image, height, width, channel, &jobs[i], buff);
-            // if (i == 1) {
-            //     saveImg("./binimage/buff.rank021.bin", jobs[i].h+2*jobs[i].padh, jobs[i].w+2*jobs[i].padw,
-            //         jobs[i].c, buff);
-            // }
-            printf("Created buffer for slave %d\n", i);
+            // printf("Created buffer for slave %d\n", i);
             buffsize = (jobs[i].h+2*jobs[i].padh)*(jobs[i].w+2*jobs[i].padw)*jobs[i].c;
-            printf("Ready to send buffsize to %d: %d\n", i, buffsize);
+            // printf("Ready to send buffsize to %d: %d\n", i, buffsize);
             MPI_Send(buff, buffsize, MPI_UINT8_T, i, TAG, MPI_COMM_WORLD);
-            printf("Sent buffsize to %d: %d\n", i, buffsize);
+            // printf("Sent buffsize to %d: %d\n", i, buffsize);
         }
-        // free(buff);
     } else {
         if (jobs->h != 0 and jobs->w != 0) {
-            printf("%d ready to receive buffer.\n", rank);
+            // printf("%d ready to receive buffer.\n", rank);
             int buffsize = (jobs->h+2*jobs->padh)*(jobs->w+2*jobs->padw)*jobs->c;
-            // buff = (uint8*)calloc(buffsize, sizeof(uint8));
-            MPI_Recv(buff, buffsize, MPI_UINT8_T, 0, TAG, MPI_COMM_WORLD, NULL);
-            printf("Receive buffsize: %d\n", buffsize);
-            // printf("Slave %d received buffer from master.\n", rank);
-            // if (rank == 1) {
-            //     saveImg("./binimage/buff.rank1.bin", jobs->h+2*jobs->padh, jobs->w+2*jobs->padw,
-            //         jobs->c, buff);
-            // }
+            MPI_Recv(buff, buffsize, MPI_UINT8_T, 0, TAG, MPI_COMM_WORLD, &stat);
+            // printf("Receive buffsize: %d\n", buffsize);
             medianBlurColoredJob(buff, jobs); // actually the pointer to 1 single job is passed
-            // printf("Slave %d finished median filt job.\n", rank);
             MPI_Send(buff, buffsize, MPI_UINT8_T, 0, TAG, MPI_COMM_WORLD);
-            printf("Slave %d sent buff back.\n", rank);
+            // printf("Slave %d sent buff back.\n", rank);
         } else {
             printf("Skipped receiving buff at %d\n", rank);
         }
@@ -446,8 +420,7 @@ int main(int argc, char* args[]) {
 
     // Send job buff (image block): slave -> master
     if (rank == 0) {
-        t2 = clock();
-        // buff = new uint8[(height+2*margin)*(width+2*margin)*channel]; // allocate a much larger buff
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &t2);
         int buffsize;
         for (int i=1; i<size; i++) {
             if (jobs[i].h == 0 || jobs[i].w == 0) {
@@ -464,11 +437,22 @@ int main(int argc, char* args[]) {
     delete[] buff;
 
     if (rank == 0) {
-        t3 = clock();
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &t3);
         printf("Program finished.\n");
-        printf("\ttime for job information passing: %f\n s", (double)(t1-t0)/CLOCKS_PER_SEC);
-        printf("\ttime for job buffer passing: %f\n s", (double)(t2-t1)/CLOCKS_PER_SEC);
-        printf("\ttime for slave running and job aggregation: %f s\n", (double)(t3-t2)/CLOCKS_PER_SEC);
+        printf("t0=%ld,t1=%ld,t2=%ld,t3=%ld.\n",
+            t0.tv_sec, t1.tv_sec, t2.tv_sec, t3.tv_sec);
+        printf("\ttime for job information passing: %f\n ms", diff(t0, t1));
+        printf("\ttime for job buffer passing: %f\n ms", diff(t1, t2));
+        printf("\ttime for slave running and job aggregation: %f ms\n", diff(t2, t3));
+
+
+        // write result
+        std::ofstream file;
+        file.open(args[4], std::ios::out | ios::app);
+        file<<fullname<<"\t"<<window_size<<"\t"<<height<<"\t"<<width<<"\t" \
+            <<channel<<"\t"<<diff(t0, t1)<<"\t"<<diff(t1, t2)<<"\t"<<diff(t2, t3)<<"\t" \
+            <<diff(t0,t3)<<std::endl;
+
     }
 
     if (rank == 0) {
@@ -481,6 +465,5 @@ int main(int argc, char* args[]) {
 
 
     delete[] image;
-    // free(image);
     return 0;
 }
