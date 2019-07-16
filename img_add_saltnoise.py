@@ -17,4 +17,5 @@ for i in range(1,14):
 
     img = np.array(Image.open(filename), dtype=np.uint8)
     img = SaltNoise(img)
-    img.
+    img = Image.fromarray(img)
+    img.save(sfilename)
