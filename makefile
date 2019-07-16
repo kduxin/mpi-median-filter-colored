@@ -1,2 +1,2 @@
-target: mpi.o
-	mpicxx libjpeg.so medianBlurColored_mpi.cpp -I ./libjpeg-build/include -L ./libjpeg-build/lib -o mpi.o
+mpi.o:
+	mpic++ medianBlurColored_mpi.cpp ~/libs/libjpeg/lib/libjpeg.so  -I ~/libs/libjpeg/include -L ~/libs/libjpeg/lib -o mpi.o

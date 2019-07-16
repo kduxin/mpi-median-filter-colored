@@ -312,6 +312,8 @@ void registerBuff(uint8* image, int height, int width, int channel, Job* job, ui
 
 int main(int argc, char* args[]) {
 
+    printf("Entered main program.\n");
+
     std::string fullname, name, suffix, nfullname;
     int window_size = atoi(args[3]);
 
@@ -326,12 +328,14 @@ int main(int argc, char* args[]) {
     uint8* buff;
     Job* jobs;
 
+    printf("MPI hasn't been initialized.\n");
     
     MPI_Init(NULL, NULL);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
 
+    printf("MPI initialized.\n");
     // Load image.
     if (rank == 0) {
         if (window_size % 2 == 0) {
@@ -339,13 +343,13 @@ int main(int argc, char* args[]) {
             return 0;
         }
         
-        FILE* fp = fopen("/lustre/gt24/t24040/code/2019s1s2report/args.txt", "wt");
-        std::string argstr = std::string(args[0]) + std::string("\t") + \
-            std::string(args[1]) + std::string("\t") + \
-            std::string(args[2]) + std::string("\t") + \
-            std::string(args[3]) + std::string("\n");
-        fwrite(argstr.c_str(), sizeof(char), argstr.length(), fp);
-        fclose(fp);
+        // FILE* fp = fopen("/lustre/gt24/t24040/code/2019s1s2report/args.txt", "wt");
+        // std::string argstr = std::string(args[0]) + std::string("\t") + \
+        //     std::string(args[1]) + std::string("\t") + \
+        //     std::string(args[2]) + std::string("\t") + \
+        //     std::string(args[3]) + std::string("\n");
+        // fwrite(argstr.c_str(), sizeof(char), argstr.length(), fp);
+        // fclose(fp);
 
         fullname = std::string(args[1]);
         printf("File name: %s\n", fullname.c_str());
@@ -358,7 +362,7 @@ int main(int argc, char* args[]) {
         // getImgSize(fullname, height, width, channel);
         // image = new uint8[height*width*channel];
         read_JPEG_file(image, height, width, channel, (char*)fullname.c_str());
-        write_JPEG_file(image, height, width, channel, "./intermediate_output.jpg");
+        // write_JPEG_file(image, height, width, channel, "./intermediate_output.jpg");
         shape[0] = height; shape[1] = width; shape[2] = channel;
         printf("Input image size: [height, width, channel] = [%d, %d, %d]\n", height, width, channel);
     }
@@ -405,7 +409,7 @@ int main(int argc, char* args[]) {
                 printf("Skipped sending buff to %d\n", i);
                 continue;
             }
-            // createBuff(image, height, width, channel, &jobs[i], buff);
+            createBuff(image, height, width, channel, &jobs[i], buff);
             // if (i == 1) {
             //     saveImg("./binimage/buff.rank021.bin", jobs[i].h+2*jobs[i].padh, jobs[i].w+2*jobs[i].padw,
             //         jobs[i].c, buff);
@@ -429,7 +433,7 @@ int main(int argc, char* args[]) {
             //     saveImg("./binimage/buff.rank1.bin", jobs->h+2*jobs->padh, jobs->w+2*jobs->padw,
             //         jobs->c, buff);
             // }
-            // medianBlurColoredJob(buff, jobs); // actually the pointer to 1 single job is passed
+            medianBlurColoredJob(buff, jobs); // actually the pointer to 1 single job is passed
             // printf("Slave %d finished median filt job.\n", rank);
             MPI_Send(buff, buffsize, MPI_UINT8_T, 0, TAG, MPI_COMM_WORLD);
             printf("Slave %d sent buff back.\n", rank);
