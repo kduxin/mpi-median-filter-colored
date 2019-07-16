@@ -1,0 +1,46 @@
+File name: /lustre/gt24/t24040/code/2019s1s2report/image/aimer.jpg
+name=/lustre/gt24/t24040/code/2019s1s2report/image/aimer, suffix=jpg, nfullname=/lustre/gt24/t24040/code/2019s1s2report/image/aimer.medfilt.5.jpg
+Reading image: height=400, width=600, components=3
+Input image size: [height, width, channel] = [400, 600, 3]
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=0,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=32,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=64,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=96,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=128,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=160,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=192,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=224,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=256,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=288,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=320,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=352,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=384,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=416,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=448,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=480,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=512,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=544,cstart=0,padh=2,padw=2
+Job schedule: h=400,w=24,c=3,ystart=0,xstart=576,cstart=0,padh=2,padw=2
+image [0]: 
+jobs[1].h=400
+Process 03 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 11 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 13 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 14 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 15 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 16 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 18 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 19 received job schedule: h=400, w=24, c=3, padh=2, padw=2
+Process 01 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 02 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 04 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 05 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 06 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 07 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 08 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 09 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 10 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 12 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Process 17 received job schedule: h=400, w=32, c=3, padh=2, padw=2
+Created buffer for slave 1
+Send buffsize: 43632

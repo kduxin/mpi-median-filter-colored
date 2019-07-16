@@ -1,0 +1,77 @@
+File name: /lustre/gt24/t24040/code/2019s1s2report/image/aimer.jpg
+name=/lustre/gt24/t24040/code/2019s1s2report/image/aimer, suffix=jpg, nfullname=/lustre/gt24/t24040/code/2019s1s2report/image/aimer.medfilt.5.jpg
+Reading image: height=400, width=600, components=3
+Input image size: [height, width, channel] = [400, 600, 3]
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=0,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=20,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=40,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=60,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=80,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=100,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=120,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=140,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=160,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=180,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=200,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=220,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=240,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=260,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=280,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=300,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=320,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=340,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=360,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=380,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=400,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=420,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=440,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=460,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=480,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=500,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=520,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=540,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=560,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=20,c=3,ystart=0,xstart=580,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=0,c=3,ystart=0,xstart=600,cstart=0,padh=1,padw=1
+Process 01 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+1 ready to receive buffer.
+Process 03 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+3 ready to receive buffer.
+Process 04 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+4 ready to receive buffer.
+Process 02 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+2 ready to receive buffer.
+Process 05 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+5 ready to receive buffer.
+Process 06 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+6 ready to receive buffer.
+Process 07 received job schedule: h=400, w=20, c=3, padh=1, padw=1
+7 ready to receive buffer.
+image [0]: 
+jobs[1].h=400
+Created buffer for slave 1
+Ready to send buffsize to 1: 26532
+Sent buffsize to 1: 26532
+jobs[2].h=400
+Created buffer for slave 2
+Ready to send buffsize to 2: 26532
+Sent buffsize to 2: 26532
+jobs[3].h=400
+Created buffer for slave 3
+Ready to send buffsize to 3: 26532
+Sent buffsize to 3: 26532
+jobs[4].h=400
+Created buffer for slave 4
+Ready to send buffsize to 4: 26532
+Sent buffsize to 4: 26532
+jobs[5].h=400
+Created buffer for slave 5
+Ready to send buffsize to 5: 26532
+Sent buffsize to 5: 26532
+jobs[6].h=400
+Created buffer for slave 6
+Ready to send buffsize to 6: 26532
+Sent buffsize to 6: 26532
+jobs[7].h=400
+Created buffer for slave 7
+Ready to send buffsize to 7: 26532

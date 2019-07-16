@@ -1,0 +1,12 @@
+Fatal error in MPI_Recv: Invalid argument, error stack:
+MPI_Recv(224): MPI_Recv(buf=0x7fffed970010, count=26532, dtype=0x4c00013b, src=0, tag=0, MPI_COMM_WORLD, status=(nil)) failed
+MPI_Recv(104): Null pointer in parameter status
+[proxy:0:1@n347] [proxy:0:3@n349] HYD_pmcd_pmip_control_cmd_cb (../../pm/pmiserv/pmip_cb.c:3607): assert (!closed) failed
+[proxy:0:1@n347] HYDT_dmxu_poll_wait_for_event (../../tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:1@n347] main (../../pm/pmiserv/pmip.c:558): [proxy:0:2@n348] stdoe_cb (../../pm/pmiserv/pmip_cb.c:437): assert (!upstream_sock_closed) failed
+[proxy:0:2@n348] HYDT_dmxu_poll_wait_for_event (../../tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:2@n348] main (../../pm/pmiserv/pmipmi_cb (../../pm/pmiserv/pmip_cb.c:843): assert (!closed) failed
+[proxy:0:3@n349] HYDT_dmxu_poll_wait_for_event (../../tools/demux/demux_poll.c:76): callback returned error status
+[proxy:0:3@n349] main (../../pm/pmiserv/pmip.c:558): demux engine error waitdemux engine error waiting for event
+p.c:558): demux engine error waiting for event
+ing for event

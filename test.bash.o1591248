@@ -1,0 +1,85 @@
+File name: /lustre/gt24/t24040/code/2019s1s2report/image/aimer.jpg
+name=/lustre/gt24/t24040/code/2019s1s2report/image/aimer, suffix=jpg, nfullname=/lustre/gt24/t24040/code/2019s1s2report/image/aimer.medfilt.5.jpg
+Reading image: height=400, width=600, components=3
+Input image size: [height, width, channel] = [400, 600, 3]
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=0,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=32,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=64,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=96,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=128,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=160,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=192,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=224,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=256,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=288,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=320,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=352,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=384,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=416,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=448,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=480,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=512,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=32,c=3,ystart=0,xstart=544,cstart=0,padh=1,padw=1
+Job schedule: h=400,w=24,c=3,ystart=0,xstart=576,cstart=0,padh=1,padw=1
+image [0]: 
+jobs[1].h=400
+Created buffer for slave 1
+Ready to send buffsize to 1: 41004
+Process 03 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+3 ready to receive buffer.
+Process 13 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+13 ready to receive buffer.
+Process 14 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+14 ready to receive buffer.
+Sent buffsize to 1: 41004
+jobs[2].h=400
+Created buffer for slave 2
+Ready to send buffsize to 2: 41004
+Process 02 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+2 ready to receive buffer.
+Process 04 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+4 ready to receive buffer.
+Process 05 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+5 ready to receive buffer.
+Process 07 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+7 ready to receive buffer.
+Process 09 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+9 ready to receive buffer.
+Process 10 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+10 ready to receive buffer.
+Process 11 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+11 ready to receive buffer.
+Process 12 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+12 ready to receive buffer.
+Process 15 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+15 ready to receive buffer.
+Process 16 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+16 ready to receive buffer.
+Process 17 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+17 ready to receive buffer.
+Process 18 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+18 ready to receive buffer.
+Process 19 received job schedule: h=400, w=24, c=3, padh=1, padw=1
+19 ready to receive buffer.
+Sent buffsize to 2: 41004
+jobs[3].h=400
+Created buffer for slave 3
+Ready to send buffsize to 3: 41004
+Process 01 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+1 ready to receive buffer.
+Process 06 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+6 ready to receive buffer.
+Process 08 received job schedule: h=400, w=32, c=3, padh=1, padw=1
+8 ready to receive buffer.
+Sent buffsize to 3: 41004
+jobs[4].h=400
+Created buffer for slave 4
+Ready to send buffsize to 4: 41004
+Sent buffsize to 4: 41004
+jobs[5].h=400
+Created buffer for slave 5
+Ready to send buffsize to 5: 41004
+Sent buffsize to 5: 41004
+jobs[6].h=400
+Created buffer for slave 6
+Ready to send buffsize to 6: 41004
