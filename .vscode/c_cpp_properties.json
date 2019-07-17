@@ -9,7 +9,7 @@
             "intelliSenseMode": "clang-x64",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/libjpeg-build/include"
+                "${HOME}/libs/libjpeg/lib/"
             ]
         }
     ],

@@ -1,20 +1,20 @@
 #!/bin/bash
 #PBS -q u-lecture
 #PBS -W group_list=gt24
-#PBS -l select=1:mpiprocs=36:ompthreads=1
-#PBS -l walltime=00:01:00
+#PBS -l select=1:mpiprocs=2:ompthreads=1
+#PBS -l walltime=00:10:00
 
 select=1
-mpiprocs=36
+mpiprocs=2
 ompthreads=1
 
 cd $PBS_O_WORKDIR
 . /etc/profile.d/modules.sh
 
 echo $LD_LIBRARY_PATH
-for scheduledim in 1 2
+for scheduledim in 1
 do
-    resultfile=./result.$[$select].$[$mpiprocs].$[$ompthreads].$[$scheduledim]dimschedule.txt
+    resultfile=./cache/result.$[$select].$[$mpiprocs].$[$ompthreads].$[$scheduledim]dimschedule.txt
     rm $resultfile
     for fileid in 1 2 3 4 5 6 7 8 9 10 11 12 13
     do 
