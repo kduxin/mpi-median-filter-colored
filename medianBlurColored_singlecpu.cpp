@@ -1,5 +1,5 @@
 // compile with "g++ medianBlurColored_singlecpu.cpp $HOME/libs/libjpeg/lib/libjpeg.so -o singlecpu.o -I $HOME/libs/libjpeg/include -L $HOME/libs/libjpeg/lib"
-// run with "singlecpu.0 ./image/aimer.jpg ./image/aimer.medfilt.5.jpg 5"
+// run with "singlecpu.o ./image/aimer.jpg ./image/aimer.medfilt.5.jpg 5"
 
 #include <iostream>
 #include <bits/stdc++.h>
@@ -351,7 +351,7 @@ int main(int argc, char* args[]) {
 
     jobs = new Job;
     jobs->h = height;
-    jobs->w = height;
+    jobs->w = width;
     jobs->c = channel;
     jobs->ystart = 0;
     jobs->xstart = 0;
